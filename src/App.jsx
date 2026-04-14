@@ -1,10 +1,13 @@
 import './App.css'
 import { data } from "./data"
 import { scaleLinear, scaleSqrt } from "d3"
+import {AxisLeft} from "./AxisLeft"
+import {AxisBottom} from "./AxisBottom"
 
 const MARGIN = { top: 50, right: 50, bottom: 50, left: 50 };
-const width = 700;
-const height = 700;
+const width = 600;
+const height = 600;
+const pixelsPerTick = 40;
 
 function App() {
   
@@ -33,8 +36,22 @@ function App() {
   return (
     <>
       <svg width={width} height={height} style={{ overflow: "visible" }}>
-        <g transform = {`translate(${MARGIN.left},${MARGIN.top})`}> 
-          {allBubbles} 
+        <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
+          <AxisLeft
+            yScale={yScale}
+            pixelsPerTick={pixelsPerTick}
+            boundsWidth={boundsWidth}
+            label="Life expectancy (years)"
+          />
+          <g transform={`translate(0,${boundsHeight})`}>
+            <AxisBottom
+              xScale={xScale}
+              pixelsPerTick={pixelsPerTick}
+              boundsHeight={boundsHeight}
+              label="GDP per capita ($)"
+            />
+          </g>
+          {allBubbles}
         </g>
       </svg>
     </>
