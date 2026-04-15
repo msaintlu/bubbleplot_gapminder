@@ -4,7 +4,7 @@ import { scaleLinear, scaleOrdinal, scaleSqrt } from "d3"
 import {AxisLeft} from "./AxisLeft"
 import {AxisBottom} from "./AxisBottom"
 
-const MARGIN = { top: 50, right: 50, bottom: 200, left: 150 };
+const MARGIN = { top: 50, right: 50, bottom: 150, left: 150 };
 const width = 1000;
 const height = 660;
 const pixelsPerTick = 51;
@@ -76,7 +76,14 @@ function App() {
         >
           Life expectancy drops for countries with lower GDP per capita
         </p>
-        <div style={{ width: {width}, height: "1px", backgroundColor: "black", marginTop:-10}}/>
+        <div
+          style={{
+            width: { width },
+            height: "1px",
+            backgroundColor: "black",
+            marginTop: -10,
+          }}
+        />
       </div>
       <svg width={width} height={height} style={{ overflow: "visible" }}>
         {/*<rect width={width} height={height} fill="grey" />*/}
@@ -100,6 +107,14 @@ function App() {
           {legend}
         </g>
       </svg>
+      <div>
+        <p style={{ fontSize: 14, fontStyle: "italic", marginTop: 0 }}>
+          Each bubble is a country. Bubble size proportional to population.
+        </p>
+        <p style={{fontSize: 14, fontStyle:"italic", marginTop: -20}} >
+          Source: Gapminder.
+        </p>
+      </div>
     </>
   );
 }
