@@ -59,7 +59,7 @@ function App() {
           strokeOpacity={bubblesOpacity}
         />
         </g>
-      <text x={65} fontSize={20} fontStyle="italic"> {c} </text>
+      <text x={50} fontSize={20} fontStyle="italic"> {c} </text>
     </g>
   ));
 
