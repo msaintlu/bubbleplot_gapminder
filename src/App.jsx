@@ -4,10 +4,10 @@ import { scaleLinear, scaleOrdinal, scaleSqrt } from "d3"
 import {AxisLeft} from "./AxisLeft"
 import {AxisBottom} from "./AxisBottom"
 
-const MARGIN = { top: 50, right: 50, bottom: 50, left: 50 };
+const MARGIN = { top: 50, right: 50, bottom: 200, left: 150 };
 const width = 1000;
-const height = 600;
-const pixelsPerTick = 60;
+const height = 660;
+const pixelsPerTick = 51;
 const bubblesOpacity = 0.4;
 
 const continents = [...new Set(data.map(item => item.continent))]; // new Set enlève les doublons
@@ -22,7 +22,7 @@ function App() {
 
   const xScale = scaleLinear().domain([0, 5e4]).range([boundsWidth, 0]);
   const yScale = scaleLinear().domain([35, 85]).range([boundsHeight, 0]);
-  const sizeScale = scaleSqrt().domain([2e5, 1.4e9]).range([3,48]);
+  const sizeScale = scaleSqrt().domain([2e5, 1.4e9]).range([3,40]);
   const colorScale = scaleOrdinal()
     .domain(["Asia", "Europe", "Africa", "Americas", "Oceania"])
     .range(["#DD7373", "#3B3561", "#EAD94C", "#874000", "#51A3A3"]);
@@ -42,7 +42,7 @@ function App() {
 
   const legend = continents.map((c, i) => (
     <g key={c} transform={`translate(${boundsWidth/15}, ${boundsHeight*0.5 + (i * boundsHeight) / 10})`} >
-      <g transform={`scale(2)`} >
+      <g transform={`scale(1.5)`} >
         <path
           d="M 0,0 L 5,-5 L 7,0 L 12,-5 L 14,0 Q 19,-5 21,-5"
           stroke="white"
@@ -65,8 +65,23 @@ function App() {
 
   return (
     <>
+      <div>
+        <p
+          style={{
+            fontWeight: "bolder",
+            fontSize: 26,
+            marginTop: 50,
+            marginBottom: 20,
+          }}
+        >
+          Life expectancy drops for countries with lower GDP per capita
+        </p>
+        <div style={{ width: {width}, height: "1px", backgroundColor: "black", marginTop:-10}}/>
+      </div>
       <svg width={width} height={height} style={{ overflow: "visible" }}>
+        {/*<rect width={width} height={height} fill="grey" />*/}
         <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
+          {/*<rect width={boundsWidth} height={boundsHeight} fill="lightgrey" />*/}
           <AxisLeft
             yScale={yScale}
             pixelsPerTick={pixelsPerTick}
@@ -78,7 +93,7 @@ function App() {
               xScale={xScale}
               pixelsPerTick={pixelsPerTick}
               boundsHeight={boundsHeight}
-              label="GDP per capita — From high to low ($ USD)"
+              label="GDP per capita — Highest to lowest ($ USD)"
             />
           </g>
           {allBubbles}
