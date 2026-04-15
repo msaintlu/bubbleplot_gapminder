@@ -3,7 +3,7 @@ const axisOffset = 50;
 
 export const AxisBottom = ({ xScale, pixelsPerTick, boundsHeight, label }) => {
   const range = xScale.range();
-  const width = range[1] - range[0];
+  const width = range[0] - range[1];
   const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
 
   return (
@@ -25,7 +25,7 @@ export const AxisBottom = ({ xScale, pixelsPerTick, boundsHeight, label }) => {
             opacity={0.5}
           />
           {/* Tick */}
-          <line y1={axisOffset} y2={axisOffset+TICK_LENGTH} stroke="black" />
+          <line y1={axisOffset} y2={axisOffset + TICK_LENGTH} stroke="black" />
           <text
             y={axisOffset}
             style={{
@@ -34,13 +34,18 @@ export const AxisBottom = ({ xScale, pixelsPerTick, boundsHeight, label }) => {
               transform: "translateY(20px)",
             }}
           >
-            {value}
+            {value / 1000} k {/* C'est une espace fine avant le k !*/}
           </text>
         </g>
       ))}
       {/* Axis title */}
       {label && (
-        <text x={width / 2} y={axisOffset+65} fontSize={20} textAnchor="middle">
+        <text
+          x={width / 2}
+          y={axisOffset + 65}
+          fontSize={20}
+          textAnchor="middle"
+        >
           {label}
         </text>
       )}
