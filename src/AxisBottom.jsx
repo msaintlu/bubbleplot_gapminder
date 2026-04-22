@@ -3,7 +3,7 @@ const axisOffset = 50;
 
 export const AxisBottom = ({ xScale, pixelsPerTick, boundsHeight, label }) => {
   const range = xScale.range();
-  const width = range[0] - range[1];
+  const width = range[1] - range[0];
   const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
 
   return (

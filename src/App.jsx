@@ -20,7 +20,7 @@ function App() {
   //console.log(Math.max(...data.map((item) => item.pop)));
   //console.log(Math.min(...data.map((item) => item.pop)));
 
-  const xScale = scaleLinear().domain([0, 5e4]).range([boundsWidth, 0]);
+  const xScale = scaleLinear().domain([0, 5e4]).range([0, boundsWidth]);
   const yScale = scaleLinear().domain([35, 85]).range([boundsHeight, 0]);
   const sizeScale = scaleSqrt().domain([2e5, 1.4e9]).range([3,40]);
   const colorScale = scaleOrdinal()
@@ -41,7 +41,7 @@ function App() {
   ));  
 
   const legend = continents.map((c, i) => (
-    <g key={c} transform={`translate(${boundsWidth/15}, ${boundsHeight*0.5 + (i * boundsHeight) / 10})`} >
+    <g key={c} transform={`translate(${boundsWidth/1.3}, ${boundsHeight*0.5 + (i * boundsHeight) / 10})`} >
       <g transform={`scale(1.5)`} >
         <path
           d="M 0,0 L 5,-5 L 7,0 L 12,-5 L 14,0 Q 19,-5 21,-5"
@@ -100,7 +100,7 @@ function App() {
               xScale={xScale}
               pixelsPerTick={pixelsPerTick}
               boundsHeight={boundsHeight}
-              label="GDP per capita — Highest to lowest ($ USD)"
+              label="GDP per capita ($ USD)"
             />
           </g>
           {allBubbles}
